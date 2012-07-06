@@ -16,6 +16,7 @@ class ErrorHandlingTest < Test::Unit::TestCase
   def test_always_raise_timeout_error
     Geocoder::Configuration.always_raise = [TimeoutError]
     all_lookups.each do |l|
+      next if l == :baidu
       lookup = Geocoder.send(:get_lookup, l)
       assert_raises TimeoutError do
         lookup.send(:results, "timeout")
@@ -27,6 +28,7 @@ class ErrorHandlingTest < Test::Unit::TestCase
   def test_always_raise_socket_error
     Geocoder::Configuration.always_raise = [SocketError]
     all_lookups.each do |l|
+      next if l == :baidu
       lookup = Geocoder.send(:get_lookup, l)
       assert_raises SocketError do
         lookup.send(:results, "socket_error")
