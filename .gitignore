@@ -3,4 +3,4 @@ rdoc/*
 *.gem
 .bundle
 .rvmrc
-*/*.swp
+*.swp
